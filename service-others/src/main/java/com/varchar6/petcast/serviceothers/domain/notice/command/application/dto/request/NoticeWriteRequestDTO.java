@@ -1,14 +1,12 @@
 package com.varchar6.petcast.serviceothers.domain.notice.command.application.dto.request;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class NoticeWriteRequestDTO {
     private String title;
     private String content;

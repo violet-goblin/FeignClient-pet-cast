@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.stream.Stream;
 
 @Slf4j
 @Service(value = "commandNoticeService")
@@ -50,24 +51,25 @@ public class NoticeServiceImpl implements NoticeService {
 
         ResponseEntity<ResponseMessage> message = memberServiceClient.searchMemberRole(map);
 
-        log.info(message.getBody().getResult().toString());
-        log.info("1");
-        List<ResponseMemberRole> roleList = (List<ResponseMemberRole>) message.getBody().getResult();
-        log.info("2");
+        log.info("fuck {}:", message.getBody().getResult().getClass());
 
-        for(int i=0;i<roleList.size();i++){
-            log.info("name {}: ", roleList.get(i).getName());
-        }
-//        List<ResponseMemberRole> roleList = memberServiceClient.searchMemberRole(noticeWriteRequestDTO.getMemberId());
+        List test= (List) message.getBody().getResult();
 
-        for(ResponseMemberRole role : roleList) {
-            if (role.getName().equals("ROLE_ADMIN")) {
+        Map<String, String> roleList = new HashMap<>();
+        // Message 객체가 Map<String, Object> 형태라면 캐스팅 후 접근
+        for(Object getRole : test){
+
+            roleList = (Map<String, String>) getRole;
+
+            String roleCheck = (String) roleList.get("name");
+
+            if(roleCheck.equals("ROLE_ADMIN")){
                 flag = true;
                 break;
             }
         }
 
-        if(!flag)
+        if (!flag)
             throw new IllegalAccessException("관리자가 아닙니다.");
 
         Notice notice = modelMapper.map(noticeWriteRequestDTO, Notice.class);
@@ -79,7 +81,7 @@ public class NoticeServiceImpl implements NoticeService {
         try {
             noticeRepository.save(notice);
             return 1;
-        }catch(Exception e){
+        } catch (Exception e) {
             throw new RuntimeException("공지 입력 실패", e) {
             };
         }

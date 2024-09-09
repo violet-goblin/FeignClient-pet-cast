@@ -12,8 +12,8 @@ spring:
 #    url: jdbc:mariadb://localhost:8080/pet_cast
     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
     url: jdbc:log4jdbc:mariadb://localhost:3306/pet_cast
-    username: test
-    password: test
+    username: swcamp
+    password: swcamp
 
   ## jpa config
   jpa:
@@ -35,3 +35,8 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://localhost:8761/eureka
+
+
+token:
+  expiration_time: 43200000
+  secret: CdkKVDgED/8zH71UEu1kRNaeI9/rWJiGxiT+ht0u5QaVjOXKkx//t+hLqtTgwqEGWDuQaz07ze60vVX8LTnlKQ==

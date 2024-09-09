@@ -27,6 +27,8 @@ public class NoticeController {
     @PostMapping("")
     private ResponseEntity<ResponseMessage> createNotice(@RequestBody NoticeWriteRequestDTO noticeWriteRequestDTO,
                                                          @RequestHeader("X-Member-Id") String id) throws IllegalAccessException {
+        log.info("Creating notice with id: {}", noticeWriteRequestDTO.toString());
+
         noticeWriteRequestDTO.setMemberId(id);
         int result = noticeService.insertNotice(noticeWriteRequestDTO);
 
