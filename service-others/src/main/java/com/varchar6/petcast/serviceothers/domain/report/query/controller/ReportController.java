@@ -7,10 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,8 +24,8 @@ public class ReportController {
     }
 
     @GetMapping("/post")
-    private ResponseEntity<ResponseMessage> getAllReports(){
-        List<ReportDTO> responseReports = reportService.getAllReports();
+    private ResponseEntity<ResponseMessage> getAllReports(@RequestHeader("X-Member-Id") String memberId) throws IllegalAccessException {
+        List<ReportDTO> responseReports = reportService.getAllReports(memberId);
 
         return ResponseEntity
                 .ok()
@@ -43,8 +40,9 @@ public class ReportController {
 
 
     @GetMapping("/reporter/{reporterId}")
-    private ResponseEntity<ResponseMessage> getReportByReporterId(@PathVariable Integer reporterId){
-        List<ReportDTO> responseReports = reportService.getReportByReporterId(reporterId);
+    private ResponseEntity<ResponseMessage> getReportByReporterId(@PathVariable Integer reporterId,
+                                                                  @RequestHeader("X-Member-Id") String memberId) throws IllegalAccessException {
+        List<ReportDTO> responseReports = reportService.getReportByReporterId(reporterId, memberId);
 
         return ResponseEntity
                 .ok()
@@ -59,8 +57,9 @@ public class ReportController {
     }
 
     @GetMapping("/respondent/{respondentId}")
-    private ResponseEntity<ResponseMessage> getReportByRespondentId(@PathVariable Integer respondentId){
-        List<ReportDTO> responseReports = reportService.getReportByRespondentId(respondentId);
+    private ResponseEntity<ResponseMessage> getReportByRespondentId(@PathVariable Integer respondentId,
+                                                                    @RequestHeader("X-Member-Id") String memberId) throws IllegalAccessException {
+        List<ReportDTO> responseReports = reportService.getReportByRespondentId(respondentId, memberId);
 
         return ResponseEntity
                 .ok()

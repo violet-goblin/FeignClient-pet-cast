@@ -10,6 +10,6 @@ import java.util.List;
 public interface NoticeService {
     int insertNotice(NoticeWriteRequestDTO noticeWriteRequestDTO) throws IllegalAccessException;
     int updateNotice(NoticeUpdateRequestDTO noticeUpdateRequestDTO) throws IllegalAccessException;
-    int deleteNotice(int noticeId, int memberId) throws IllegalAccessException;
+    int deleteNotice(int noticeId, String memberId) throws IllegalAccessException;
 
 }
