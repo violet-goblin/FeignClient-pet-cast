@@ -28,17 +28,25 @@
           FROM TBL_NOTICE A
          WHERE A.ID = #{ id }
     </select>
-    <select id="selectAllNotice" resultMap="memberResultMap" parameterType="_int">
+    <select id="selectAllNotice" resultMap="memberResultMap" parameterType="com.varchar6.petcast.serviceothers.common.util.RequestList">
         SELECT
-               A.ID
-             , A.TITLE
-             , A.CONTENT
-             , A.CREATED_AT
-             , A.UPDATED_AT
-             , A.VIEW
-             , A.FIXED
-             , A.ACTIVE
-             , A.MEMBER_ID
-          FROM TBL_NOTICE A
+        A.ID
+        , A.TITLE
+        , A.CONTENT
+        , A.CREATED_AT
+        , A.UPDATED_AT
+        , A.VIEW
+        , A.FIXED
+        , A.ACTIVE
+        , A.MEMBER_ID
+        FROM TBL_NOTICE A
+        ORDER BY A.CREATED_AT DESC
+        OFFSET #{pageable.offset} ROWS FETCH NEXT #{pageable.pageSize} ROWS ONLY
     </select>
+    <select id="selectAllNoticeCount" resultType="int">
+        SELECT
+        COUNT(*) AS CNT
+        FROM TBL_NOTICE A
+    </select>
+
 </mapper>

@@ -5,7 +5,7 @@ import com.varchar6.petcast.serviceothers.domain.notice.command.application.dto.
 import com.varchar6.petcast.serviceothers.domain.notice.command.application.dto.request.NoticeWriteRequestDTO;
 import com.varchar6.petcast.serviceothers.domain.notice.command.domain.aggregate.Notice;
 import com.varchar6.petcast.serviceothers.domain.notice.command.domain.repository.NoticeRepository;
-import com.varchar6.petcast.serviceothers.domain.notice.command.infrastructure.client.MemberServiceClient;
+import com.varchar6.petcast.serviceothers.infrastructure.client.MemberServiceClient;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;

@@ -1,7 +1,7 @@
 package com.varchar6.petcast.serviceothers.domain.report.query.service;
 
 import com.varchar6.petcast.serviceothers.common.response.ResponseMessage;
-import com.varchar6.petcast.serviceothers.domain.notice.command.infrastructure.client.MemberServiceClient;
+import com.varchar6.petcast.serviceothers.infrastructure.client.MemberServiceClient;
 import com.varchar6.petcast.serviceothers.domain.report.query.dto.ReportDTO;
 import com.varchar6.petcast.serviceothers.domain.report.query.mapper.ReportMapper;
 import lombok.extern.slf4j.Slf4j;
